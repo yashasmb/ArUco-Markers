@@ -16,7 +16,7 @@ def download_imgs():
     # Download button for the zipped folder
     with open(zip_file, "rb") as file:
         btn = st.download_button(
-            label="Download All Files",
+            label="Download Testing Files",
             data=file,
             file_name="testing_img.zip",
             mime="application/zip"
