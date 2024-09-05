@@ -6,12 +6,12 @@ import streamlit as st
 def initial_marker_values():
     default_checked = st.checkbox('Use Default Values', value=True)
 
-    col1, col2 = st.columns(2)
     # Display 4 input boxes
     if default_checked:
         st.session_state.number = st.session_state.default_number
         # If checkbox is checked, show default values
         st.write("Default values:")
+        col1, col2 = st.columns(2)
         with col1:
             val1 = st.number_input("Top Left", value=st.session_state.number[0], disabled=True)
         with col2:
@@ -23,6 +23,7 @@ def initial_marker_values():
     else:
         # If unchecked, allow user to modify the values within range 0-200
         st.write("Modify values:")
+        col1, col2 = st.columns(2)
         with col1:
             val1 = st.number_input("Top Left", value=st.session_state.number[0], min_value=0, max_value=200)
         with col2:    
