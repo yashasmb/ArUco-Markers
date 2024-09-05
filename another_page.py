@@ -30,9 +30,9 @@ def show():
     st.session_state.number[3] = st.number_input("Bottom Left (2nd)", min_value=0, max_value=200, value=st.session_state.number[3], step=1)
 
     # Button to randomize numbers
-    if st.button("Randomize Numbers"):
-        st.session_state.number = [random.randint(0, 200) for _ in range(4)]
-        st.experimental_rerun()  # Rerun the app to reflect random values in inputs
+    # if st.button("Randomize Numbers"):
+    #     st.session_state.number = [random.randint(0, 200) for _ in range(4)]
+    #     st.experimental_rerun()  # Rerun the app to reflect random values in inputs
 
     def custom(numbers):
         return cv2.aruco.generateImageMarker(dictionary, numbers, 200)
