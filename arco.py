@@ -1,9 +1,12 @@
 import cv2
 import numpy as np
+import streamlit as st
 
 dictionary = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_6X6_250)
 
 default_markers= [23,25, 30, 30]
+
+
 def custom(number):
     return cv2.aruco.generateImageMarker(dictionary, number, 200)
 
@@ -11,13 +14,8 @@ def custom(number):
 
 def return_img(frame_dst):
     frame_dst=frame_dst
-    # frame_dst = cv2.imread('images\IMG_20240904_092026.jpg')
-
-    # Detect the markers in the destination image.
     corners, ids, rejected = cv2.aruco.detectMarkers(frame_dst, dictionary)
-
     frame_detetced = frame_dst.copy()
-
     cv2.aruco.drawDetectedMarkers(frame_detetced, corners, ids)
     return frame_detetced
 
@@ -26,7 +24,7 @@ def return_img(frame_dst):
 # Extract reference point coordinates from marker corners.
 
 
-def corner_roi(id, corner):
+def corner_roi(id, corner, scaling_x=.015, scaling_y=.025):
 
     # Upper-left corner of ROI.
     index = np.squeeze(np.where(ids == id[0]))
@@ -50,8 +48,8 @@ def corner_roi(id, corner):
     x_distance = np.linalg.norm(ref_pt1 - ref_pt2)
     y_distance = np.linalg.norm(ref_pt1 - ref_pt3)
 
-    scaling_fac_x = .015  # Scale factor in x (horizontal).
-    scaling_fac_y = .025 # Scale factor in y (vertical).
+    scaling_fac_x = scaling_x  # Scale factor in x (horizontal).
+    scaling_fac_y = scaling_y # Scale factor in y (vertical).
 
     delta_x = round(scaling_fac_x * x_distance)
     delta_y = round(scaling_fac_y * y_distance)

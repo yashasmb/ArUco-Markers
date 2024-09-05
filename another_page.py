@@ -4,7 +4,11 @@ import random
 from io import BytesIO
 from PIL import Image
 import zipfile
+from session_state import get_session_state
 
+
+session_state = get_session_state()
+    
 
 def show():
     st.title("Generation of Markers Page")
@@ -12,13 +16,13 @@ def show():
     if st.button('Back to Main Page'):
         st.session_state.page = 'main_page'
 
-
+    
     dictionary = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_6X6_250)
     positions = ["Top Left (1st)", "Top Right", "Bottom Right", "Bottom Left (2nd)"]
 
     # Define default number list as session state to persist changes
 
-
+    
     # Create number input fields
     st.session_state.number[0] = st.number_input("Top Left (1st)", min_value=0, max_value=200, value=st.session_state.number[0], step=1)
     st.session_state.number[1] = st.number_input("Top Right", min_value=0, max_value=200, value=st.session_state.number[1], step=1)

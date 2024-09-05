@@ -17,7 +17,7 @@ def generate_image1 (img1 ,img2, scaling_x=.015,scaling_y=.025):
     corners, ids, rejected = cv2.aruco.detectMarkers(frame_dst, dictionary)
     frame_detetced = frame_dst.copy()
     cv2.aruco.drawDetectedMarkers(frame_detetced, corners, ids)
-    st.image(frame_detetced, caption=None, width=None, use_column_width=None, clamp=False, channels="RGB", output_format="auto")
+    st.image(frame_detetced, caption=None, width=None, use_column_width=None, clamp=False, channels="BGR", output_format="auto")
     
     
     
